@@ -118,10 +118,14 @@ def get_corridor_clusters(db: Session, corridor_name: str) -> list[dict[str, Any
         return []
 
     states = corridor["states"]
-    placeholders = ", ".join(f":state_{i}" for i in range(len(states)))
-    params: dict[str, Any] = {f"state_{i}": s for i, s in enumerate(states)}
     if not states:
         return []
+
+    # Build named bind parameters (:state_0, :state_1, …) so SQLAlchemy
+    # handles all value escaping – only safe placeholder names appear in
+    # the f-string, never raw user/data values.
+    placeholders = ", ".join(f":state_{i}" for i in range(len(states)))
+    params: dict[str, Any] = {f"state_{i}": s for i, s in enumerate(states)}
 
     sql = text(f"""
         SELECT id, cluster_name, state, city, latitude, longitude,

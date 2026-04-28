@@ -80,7 +80,7 @@ def get_heatmap(db: Session = Depends(get_db)):
 
 
 @router.get("/analytics/pooling/{cluster_id}")
-def get_pooling_opportunities(
+def get_cluster_pooling_opportunities(
     cluster_id: int, radius_km: float = 100.0, db: Session = Depends(get_db)
 ):
     cluster = db.query(IndustrialCluster).filter(IndustrialCluster.id == cluster_id).first()

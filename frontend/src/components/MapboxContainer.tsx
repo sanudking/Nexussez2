@@ -315,7 +315,7 @@ export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: 
           const feat = e.features?.[0];
           if (!feat || !e.lngLat) return;
           const p = feat.properties as Record<string, unknown>;
-          const demand = ((p.avg_monthly_raw_material_demand_kg as number) / 1000).toFixed(0);
+          const demandMT = ((p.avg_monthly_raw_material_demand_kg as number) / 1000).toFixed(0);
           popupRef.current!
             .setLngLat(e.lngLat)
             .setHTML(
@@ -329,7 +329,7 @@ export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: 
                 </div>
                 <div style="display:flex;justify-content:space-between;">
                   <span style="color:#a0aec0;font-size:11px;">Demand</span>
-                  <span style="color:#e0f0ff;font-weight:600;">${demand} MT/mo</span>
+                  <span style="color:#e0f0ff;font-weight:600;">${demandMT} MT/mo</span>
                 </div>
               </div>`
             )

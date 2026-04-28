@@ -67,7 +67,7 @@ export default function HomePage() {
   }, [filters, clusters]);
 
   const handleClusterSelect = useCallback((cluster: IndustrialCluster) => {
-    setSelectedCluster(cluster);
+    setSelectedCluster((prev) => (prev?.id === cluster.id ? null : cluster));
   }, []);
 
   const handleFilterChange = useCallback((newFilters: ClusterFilter) => {

@@ -120,6 +120,8 @@ def get_corridor_clusters(db: Session, corridor_name: str) -> list[dict[str, Any
     states = corridor["states"]
     placeholders = ", ".join(f":state_{i}" for i in range(len(states)))
     params: dict[str, Any] = {f"state_{i}": s for i, s in enumerate(states)}
+    if not states:
+        return []
 
     sql = text(f"""
         SELECT id, cluster_name, state, city, latitude, longitude,

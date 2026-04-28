@@ -164,7 +164,7 @@ export default function ClusterSidebar({ clusters, selectedCluster, onClusterSel
             key="detail"
             cluster={selectedCluster}
             allClusters={clusters}
-            onBack={() => onClusterSelect(selectedCluster)}
+            onBack={() => onClusterSelect(selectedCluster!)}  // triggers toggle → deselects
           />
         ) : (
           <motion.div

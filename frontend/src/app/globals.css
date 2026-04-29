@@ -1,0 +1,74 @@
+@import 'mapbox-gl/dist/mapbox-gl.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #050a0e;
+  color: #e0f0ff;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a3a5c;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}
+
+/* Mapbox popup overrides */
+.mapboxgl-popup-content {
+  background: #0d1f35 !important;
+  border: 1px solid #1a3a5c !important;
+  border-radius: 8px !important;
+  color: #e0f0ff !important;
+  padding: 12px !important;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2) !important;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: #1a3a5c !important;
+  border-bottom-color: #1a3a5c !important;
+}
+
+.mapboxgl-ctrl-group {
+  background: #0d1f35 !important;
+  border: 1px solid #1a3a5c !important;
+}
+
+.mapboxgl-ctrl-group button {
+  background: #0d1f35 !important;
+  color: #e0f0ff !important;
+}
+
+.mapboxgl-ctrl-group button:hover {
+  background: #1a3a5c !important;
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.glow-border {
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3), inset 0 0 10px rgba(0, 212, 255, 0.05);
+}
+
+/* Score color helpers */
+.score-high { color: #00ff88; }
+.score-mid  { color: #ffd700; }
+.score-low  { color: #ff3b5c; }

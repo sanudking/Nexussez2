@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Search, X, Layers, BarChart2, Route, SlidersHorizontal } from 'lucide-react';
+import { Search, X, Layers, BarChart2, Route, SlidersHorizontal, Package, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import type { ClusterFilter, MapMode } from '@/types';
 
 const INDIAN_STATES = [
@@ -110,6 +111,17 @@ export default function CommandPanel({
             </button>
           ))}
         </div>
+      </div>
+      
+      {/* Quick Links */}
+      <div className="mt-2">
+        <label className="text-[10px] text-industrial-muted uppercase tracking-widest mb-2 flex items-center gap-1">
+          <Layers size={10} /> Extensions
+        </label>
+        <Link href="/app/marketplace" className="w-full flex items-center justify-between p-2 rounded-lg bg-industrial-card border border-industrial-border hover:border-industrial-accent hover:text-industrial-accent text-industrial-text transition">
+          <span className="text-xs font-semibold flex items-center gap-2"><Package size={14} /> B2B Marketplace</span>
+          <ArrowRight size={14} />
+        </Link>
       </div>
 
       {/* Filters */}

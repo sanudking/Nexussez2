@@ -138,7 +138,7 @@ function DetailPanel({
 export default function ClusterSidebar({ clusters, selectedCluster, onClusterSelect }: Props) {
   const [localSearch, setLocalSearch] = useState('');
 
-  const displayList = localSearch
+  const displayList: IndustrialCluster[] = localSearch
     ? clusters.filter(
         (c) =>
           c.cluster_name.toLowerCase().includes(localSearch.toLowerCase()) ||
@@ -199,7 +199,7 @@ export default function ClusterSidebar({ clusters, selectedCluster, onClusterSel
                   <ClusterCard
                     key={c.id}
                     cluster={c}
-                    isSelected={selectedCluster?.id === c.id}
+                    isSelected={false}
                     onClick={() => onClusterSelect(c)}
                   />
                 ))

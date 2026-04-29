@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Factory, Map, Package, Zap } from 'lucide-react';
+import { Factory, KeyRound, Map, Package, Zap } from 'lucide-react';
 import type { NationalSummary } from '@/types';
 
 interface Props {
@@ -86,16 +87,29 @@ export default function StatsBar({ summary, activeCount }: Props) {
         </div>
       ))}
 
-      {/* Live indicator */}
-      <div className="ml-auto flex items-center gap-1.5 flex-shrink-0 pl-3">
-        <motion.div
-          animate={{ opacity: [1, 0.3, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-2 h-2 rounded-full bg-industrial-danger"
-        />
-        <span className="text-[9px] text-industrial-danger font-semibold tracking-widest uppercase">
-          Live Data
-        </span>
+      <div className="ml-auto flex items-center gap-2 flex-shrink-0 pl-3">
+        <Link
+          href="/auth/login"
+          className="hidden sm:inline-flex items-center gap-1 border border-industrial-border bg-industrial-card px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-industrial-text transition-colors hover:border-industrial-accent"
+        >
+          <KeyRound size={11} /> Sign in
+        </Link>
+        <Link
+          href="/auth/signup"
+          className="inline-flex items-center gap-1 border border-industrial-accent bg-industrial-accent px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-industrial-black transition-transform hover:-translate-y-0.5"
+        >
+          Create account
+        </Link>
+        <div className="hidden md:flex items-center gap-1.5 pl-2 flex-shrink-0">
+          <motion.div
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-2 h-2 rounded-full bg-industrial-danger"
+          />
+          <span className="text-[9px] text-industrial-danger font-semibold tracking-widest uppercase">
+            Live Data
+          </span>
+        </div>
       </div>
     </motion.div>
   );

@@ -47,7 +47,7 @@ export const MOCK_CLUSTERS: IndustrialCluster[] = [
 
 export const MOCK_SUMMARY = {
   total_clusters: MOCK_CLUSTERS.length,
-  total_states: [...new Set(MOCK_CLUSTERS.map((c) => c.state))].length,
+  total_states: MOCK_CLUSTERS.map((c) => c.state).filter((v, i, a) => a.indexOf(v) === i).length,
   total_demand_kg: MOCK_CLUSTERS.reduce((s, c) => s + c.avg_monthly_raw_material_demand_kg, 0),
   avg_logistics_score:
     Math.round(

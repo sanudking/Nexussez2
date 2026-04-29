@@ -1,16 +1,40 @@
-@import '@maptiler/sdk/dist/maptiler-sdk.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --saffron: #FF6B1A;
+  --saffron-glow: #FF6B1A33;
+  --teal: #00BFA6;
+  --gold: #F5C842;
+  --muted: #7A7A8A;
+  --card-bg: #13131A;
+  --border: #2A2A38;
+  --ink: #0A0A0F;
+  --paper: #F4F1EB;
+}
+
 body {
-  background: #050a0e;
-  color: #e0f0ff;
-  font-family: 'Inter', system-ui, sans-serif;
+  background: #0A0A0F;
+  color: #F4F1EB;
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Tailwind color aliases for compatibility */
+@layer components {
+  .bg-industrial-black { @apply bg-[#0A0A0F]; }
+  .bg-industrial-dark { @apply bg-[#13131A]; }
+  .bg-industrial-card { @apply bg-[#13131A]; }
+  .text-industrial-text { @apply text-[#F4F1EB]; }
+  .text-industrial-muted { @apply text-[#7A7A8A]; }
+  .text-industrial-accent { @apply text-[#FF6B1A]; }
+  .text-industrial-accent2 { @apply text-[#00BFA6]; }
+  .text-industrial-warning { @apply text-[#F5C842]; }
+  .border-industrial-border { @apply border-[#2A2A38]; }
 }
 
 ::-webkit-scrollbar {
@@ -18,36 +42,36 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a1628;
+  background: #0A0A0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a3a5c;
+  background: #FF6B1A;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d4ff;
+  background: #F5C842;
 }
 
 /* Mapbox popup overrides */
 .mapboxgl-popup-content {
-  background: #0d1f35 !important;
-  border: 1px solid #1a3a5c !important;
+  background: #13131A !important;
+  border: 1px solid #2A2A38 !important;
   border-radius: 8px !important;
-  color: #e0f0ff !important;
+  color: #F4F1EB !important;
   padding: 12px !important;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2) !important;
+  box-shadow: 0 0 20px rgba(255, 107, 26, 0.2) !important;
 }
 
 .mapboxgl-popup-tip {
-  border-top-color: #1a3a5c !important;
-  border-bottom-color: #1a3a5c !important;
+  border-top-color: #2A2A38 !important;
+  border-bottom-color: #2A2A38 !important;
 }
 
 .mapboxgl-ctrl-group {
-  background: #0d1f35 !important;
-  border: 1px solid #1a3a5c !important;
+  background: #13131A !important;
+  border: 1px solid #2A2A38 !important;
 }
 
 .mapboxgl-ctrl-group button {

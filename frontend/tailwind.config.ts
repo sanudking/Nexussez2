@@ -10,16 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         industrial: {
-          black: '#050a0e',
-          dark: '#0a1628',
-          card: '#0d1f35',
-          border: '#1a3a5c',
-          accent: '#00d4ff',
-          accent2: '#00ff88',
-          warning: '#ff6b35',
+          black: '#0A0A0F',
+          dark: '#0D0D14',
+          card: '#13131A',
+          border: '#2A2A38',
+          accent: '#FF6B1A',
+          accent2: '#00BFA6',
+          warning: '#F5C842',
           danger: '#ff3b5c',
-          muted: '#4a7fa5',
-          text: '#e0f0ff',
+          muted: '#7A7A8A',
+          text: '#F4F1EB',
         },
       },
       fontFamily: {
@@ -27,9 +27,9 @@ const config: Config = {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       boxShadow: {
-        'glow-accent': '0 0 20px rgba(0, 212, 255, 0.4)',
-        'glow-green': '0 0 20px rgba(0, 255, 136, 0.4)',
-        'glow-warning': '0 0 20px rgba(255, 107, 53, 0.4)',
+        'glow-accent': '0 0 20px rgba(255, 107, 26, 0.4)',
+        'glow-green': '0 0 20px rgba(0, 191, 166, 0.4)',
+        'glow-warning': '0 0 20px rgba(245, 200, 66, 0.4)',
       },
       animation: {
         'radar-sweep': 'radarSweep 3s linear infinite',

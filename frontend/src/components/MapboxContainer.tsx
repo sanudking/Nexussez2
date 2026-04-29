@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useCallback } from 'react';
+import type * as maptilersdk from '@maptiler/sdk';
 import type { IndustrialCluster, ClusterFilter, MapMode } from '@/types';
 
 interface Props {
@@ -78,7 +79,7 @@ const CORRIDORS = [
   },
 ];
 
-// Fallback placeholder when no Mapbox token
+// Fallback placeholder when no MapTiler key
 function MapPlaceholder({ clusters }: { clusters: IndustrialCluster[] }) {
   return (
     <div className="w-full h-full bg-industrial-dark flex flex-col items-center justify-center relative overflow-hidden">
@@ -101,9 +102,9 @@ function MapPlaceholder({ clusters }: { clusters: IndustrialCluster[] }) {
           Interactive Map
         </h2>
         <p className="text-industrial-muted text-sm mb-4">
-          Add your Mapbox token to{' '}
+          Add your MapTiler API key to{' '}
           <code className="text-industrial-accent bg-industrial-card px-1 rounded">
-            NEXT_PUBLIC_MAPBOX_TOKEN
+            NEXT_PUBLIC_MAPTILER_KEY
           </code>{' '}
           in <code className="text-industrial-accent bg-industrial-card px-1 rounded">.env.local</code> to
           enable the full interactive map.
@@ -137,9 +138,9 @@ function MapPlaceholder({ clusters }: { clusters: IndustrialCluster[] }) {
 
 export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: Props) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<mapboxgl.Map | null>(null);
-  const popupRef = useRef<mapboxgl.Popup | null>(null);
-  const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
+  const mapRef = useRef<maptilersdk.Map | null>(null);
+  const popupRef = useRef<maptilersdk.Popup | null>(null);
+  const token = process.env.NEXT_PUBLIC_MAPTILER_KEY ?? '';
 
   const buildGeoJSON = useCallback(
     (data: IndustrialCluster[]): GeoJSON.FeatureCollection => ({
@@ -168,14 +169,14 @@ export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: 
   useEffect(() => {
     if (!token || !mapContainerRef.current) return;
 
-    let map: mapboxgl.Map;
+    let map: maptilersdk.Map;
 
-    import('mapbox-gl').then((mapboxgl) => {
-      mapboxgl.default.accessToken = token;
+    import('@maptiler/sdk').then((maptilersdk) => {
+      maptilersdk.config.apiKey = token;
 
-      map = new mapboxgl.default.Map({
+      map = new maptilersdk.Map({
         container: mapContainerRef.current!,
-        style: 'mapbox://styles/mapbox/dark-v11',
+        style: maptilersdk.MapStyle.DATAVIZ.DARK,
         center: [82.8, 22.5],
         zoom: 4.5,
         pitch: 0,
@@ -183,19 +184,19 @@ export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: 
           [60.0, 4.0],
           [100.0, 40.0],
         ],
-        attributionControl: false,
+        forceNoAttributionControl: true,
       });
 
       mapRef.current = map;
-      popupRef.current = new mapboxgl.default.Popup({
+      popupRef.current = new maptilersdk.Popup({
         closeButton: false,
         closeOnClick: false,
         maxWidth: '300px',
       });
 
-      map.addControl(new mapboxgl.default.NavigationControl(), 'bottom-right');
+      map.addControl(new maptilersdk.NavigationControl(), 'bottom-right');
       map.addControl(
-        new mapboxgl.default.AttributionControl({ compact: true }),
+        new maptilersdk.AttributionControl({ compact: true }),
         'bottom-left'
       );
 
@@ -362,7 +363,7 @@ export default function MapboxContainer({ clusters, onClusterSelect, mapMode }: 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
-    const src = map.getSource('industrial-clusters') as mapboxgl.GeoJSONSource | undefined;
+    const src = map.getSource('industrial-clusters') as maptilersdk.GeoJSONSource | undefined;
     if (src) src.setData(buildGeoJSON(clusters));
   }, [clusters, buildGeoJSON]);
 

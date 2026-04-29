@@ -2,14 +2,13 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  transpilePackages: ['mapbox-gl'],
+  transpilePackages: ['@maptiler/sdk'],
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      'mapbox-gl': 'mapbox-gl',
     };
     return config;
   },

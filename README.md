@@ -8,8 +8,8 @@ Real-time mapping, analytics, and logistics intelligence for India's 42+ Special
 │                    NEXUS-SEZ PRO INDIA                          │
 │            National Industrial Geospatial OS                    │
 ├────────────────┬────────────────────────┬───────────────────────┤
-│  CommandPanel  │   MapboxContainer      │   ClusterSidebar      │
-│  ─────────── │   (Mapbox GL JS)       │   ─────────────────  │
+│  CommandPanel  │   MapContainer         │   ClusterSidebar      │
+│  ─────────── │   (MapTiler SDK)       │   ─────────────────  │
 │  Filters      │   • Cluster circles    │   Scrollable list     │
 │  Map modes    │   • Heatmap layer      │   + Detail panel      │
 │  Stats        │   • Corridor lines     │   + IndustrialRadar   │
@@ -33,7 +33,7 @@ Real-time mapping, analytics, and logistics intelligence for India's 42+ Special
 
 | Layer     | Technology |
 |-----------|------------|
-| Frontend  | Next.js 14, React 18, TypeScript, Tailwind CSS, Mapbox GL JS, Framer Motion |
+| Frontend  | Next.js 14, React 18, TypeScript, Tailwind CSS, MapTiler SDK, Framer Motion |
 | Backend   | FastAPI, SQLAlchemy 2, Uvicorn, GeoPandas, Shapely |
 | Database  | PostgreSQL 15 + PostGIS 3.4 |
 | Container | Docker + Docker Compose |
@@ -49,7 +49,7 @@ cd Nexussez2
 
 # 2. Copy and configure environment
 cp .env.example .env
-# Edit .env — add your Mapbox token from https://mapbox.com
+# Edit .env — add your MapTiler API key from https://maptiler.com
 
 # 3. Launch all services
 docker compose up --build
@@ -78,7 +78,7 @@ uvicorn main:app --reload --port 8000
 ### Frontend
 ```bash
 cd frontend
-cp .env.example .env.local       # add NEXT_PUBLIC_MAPBOX_TOKEN
+cp .env.example .env.local       # add NEXT_PUBLIC_MAPTILER_KEY
 npm install
 npm run dev
 ```
@@ -88,7 +88,7 @@ Frontend will be live at **http://localhost:3000** and works with mock data even
 
 ## ✨ Features
 
-- **🗺️ Interactive Mapbox GL Map** — Dark-themed satellite base, zoom to India, cluster pins coloured by industry type
+- **🗺️ Interactive MapTiler Map** — Dark-themed base, zoom to India, cluster pins coloured by industry type
 - **🔥 Heatmap Mode** — State-level demand density visualisation
 - **🛣️ Corridors Mode** — Delhi-Mumbai, Chennai-Bengaluru, Amritsar-Kolkata, Eastern/Western DFC as glowing cyan polylines
 - **42 Industrial Clusters** — Seeded across 16 states: Punjab, Gujarat, Maharashtra, Tamil Nadu, Karnataka, Telangana and more

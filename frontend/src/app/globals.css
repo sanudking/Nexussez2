@@ -1,4 +1,4 @@
-@import 'mapbox-gl/dist/mapbox-gl.css';
+@import '@maptiler/sdk/dist/maptiler-sdk.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
